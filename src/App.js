@@ -62,7 +62,10 @@ class App extends Component {
             <Row>
               <Col md={6}>
                 <button onClick={this.getPosts}>{'get posts'}</button>
-                <Posts posts={this.state.posts} />
+                <Posts
+                  posts={this.state.posts}
+                  onClick={this.handlePostClick}
+                />
               </Col>
               <Col md={6}>
                 <Comments comments={this.state.comments} />

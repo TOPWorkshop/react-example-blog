@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class Posts extends Component {
   static propTypes = {
-    posts: PropTypes.shape().isRequired,
+    posts: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
   }
 
