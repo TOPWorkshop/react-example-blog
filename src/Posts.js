@@ -16,7 +16,8 @@ class Posts extends Component {
             key={post.id}
             onClick={() => this.props.onClick(post.id)}
           >
-            {post.title}
+            <b>{post.title}</b>
+            <p>{post.body}</p>
           </ListGroupItem>
         ))}
       </ListGroup>

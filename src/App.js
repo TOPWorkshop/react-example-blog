@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Grid,
-  Row,
-  Col,
-  ListGroup,
- } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 import Posts from './Posts';
