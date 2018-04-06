@@ -7,7 +7,7 @@ import {
  } from 'react-bootstrap';
 import axios from 'axios';
 
-import Post from './Post';
+import Posts from './Posts';
 import Comments from './Comments';
 
 import logo from './logo.svg';
@@ -62,21 +62,10 @@ class App extends Component {
             <Row>
               <Col md={6}>
                 <button onClick={this.getPosts}>{'get posts'}</button>
-                <ListGroup>
-                  {this.state.posts.map((post) => (
-                    <Post
-                      key={post.id}
-                      id={post.id}
-                      title={post.title}
-                      onClick={this.handlePostClick}
-                    />
-                  ))}
-                </ListGroup>
+                <Posts posts={this.state.posts} />
               </Col>
               <Col md={6}>
-                <Comments
-                  comments={this.state.comments}
-                />
+                <Comments comments={this.state.comments} />
               </Col>
             </Row>
           </Grid>
