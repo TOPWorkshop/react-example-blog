@@ -16,9 +16,11 @@ class Profiles extends Component {
   constructor() {
     super();
 
+    const savedFavourites = localStorage.getItem('favouriteProfiles') || "";
+
     this.state = {
       selectedProfile: {},
-      favouriteProfiles: localStorage.getItem('favouriteProfiles').split(',').map(item => parseInt(item, 10)),
+      favouriteProfiles: savedFavourites.split(',').map(item => parseInt(item, 10)),
     };
   }
 
