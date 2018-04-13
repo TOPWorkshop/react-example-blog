@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
-import Posts from './Posts';
-import Comments from './Comments';
+import Profiles from './Profiles';
 
 import logo from './logo.svg';
 import './App.css';
@@ -13,18 +12,22 @@ class App extends Component {
     super();
 
     this.state = {
-      posts: [],
+      profiles: [],
       comments: [],
       selectedPostId: null,
     };
   }
 
-  getPosts = () => {
+  componentDidMount() {
+    this.getProfiles();
+  }
+
+  getProfiles = () => {
     axios({
       method: 'get',
-      url: 'https://jsonplaceholder.typicode.com/posts',
-    }).then(({ data }) => {
-      this.setState({ posts: data });
+      url: 'https://jsonplaceholder.typicode.com/users',
+    }).then(({ data: profiles }) => {
+      this.setState({ profiles });
     });
   }
 
@@ -46,29 +49,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">{'Welcome to React'}</h1>
+          </header>
 
-        <div className="App-intro">
-          <Grid>
-            <Row>
-              <Col md={6}>
-                <button onClick={this.getPosts}>{'get posts'}</button>
-                <Posts
-                  posts={this.state.posts}
-                  onClick={this.handlePostClick}
-                />
-              </Col>
-              <Col md={6}>
-                <Comments comments={this.state.comments} />
-              </Col>
-            </Row>
-          </Grid>
+          <div className="App-intro" style={{ marginTop: 50 }}>
+            <Switch>
+              <Route exact path="/" component={() => <Profiles profiles={this.state.profiles} />} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
